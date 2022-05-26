@@ -13,6 +13,8 @@ const { ethers } = hre;
 const { use, expect } = require("chai");
 const { solidity } = require("ethereum-waffle");
 
+const totalSupply = 1000;
+
 use(solidity);
 
 describe("🚩 Challenge 2: 🏵 Token Vendor 🤖", function () {
@@ -28,7 +30,7 @@ describe("🚩 Challenge 2: 🏵 Token Vendor 🤖", function () {
   }else{
     it("Should deploy YourToken", async function () {
       const YourToken = await ethers.getContractFactory("YourToken");
-      yourToken = await YourToken.deploy();
+      yourToken = await YourToken.deploy(totalSupply);
     });
     describe("totalSupply()", function () {
 
