@@ -513,7 +513,10 @@ function App(props) {
 
             <div style={{ padding: 8, marginTop: 32 }}>
               <div>Staker Contract:</div>
-              <Address value={readContracts && readContracts.Staker && readContracts.Staker.address} />
+              <Address
+                value={readContracts && readContracts.Staker && readContracts.Staker.address}
+                blockExplorer={blockExplorer}
+              />
             </div>
 
             <div style={{ padding: 8, marginTop: 32 }}>
@@ -637,7 +640,7 @@ function App(props) {
 
       <div style={{ marginTop: 32, opacity: 0.5 }}>
         {/* Add your address here */}
-        Created by <Address value={"Your...address"} ensProvider={mainnetProvider} fontSize={16} />
+        Created by <Address value={"0xB9e291b68E584be657477289389B3a6DEED3E34C"} ensProvider={mainnetProvider} fontSize={16} />
       </div>
 
       <div style={{ marginTop: 32, opacity: 0.5 }}>

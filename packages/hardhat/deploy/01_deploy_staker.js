@@ -1,6 +1,6 @@
 // deploy/01_deploy_staker.js
 
-// const { ethers } = require("hardhat");
+const { ethers } = require("hardhat");
 
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy } = deployments;
@@ -10,11 +10,13 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const exampleExternalContract = await deployments.get(
     "ExampleExternalContract"
   );
+  const STAKING_THRESHOLD = ethers.utils.parseEther("1"); // 1 ETH
+  const STAKING_INTERVAL = (chainId == "31337") ? 30 : 259200; // 30 seconds or 72 hours
 
   await deploy("Staker", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: [exampleExternalContract.address],
+    args: [exampleExternalContract.address, STAKING_THRESHOLD, STAKING_INTERVAL],
     log: true,
   });
 

@@ -21,6 +21,8 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
 
   let stakerContract;
   let exampleExternalContract;
+  const THRESHOLD = ethers.utils.parseEther("1"); // 1 ETH
+  const STAKING_INTERVAL = 30; // 30 seconds
 
   //console.log("hre:",Object.keys(hre)) // <-- you can access the hardhat runtime env here
 
@@ -38,7 +40,7 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
       });
       it("Should deploy Staker", async function () {
         const Staker = await ethers.getContractFactory("Staker");
-        stakerContract = await Staker.deploy(exampleExternalContract.address);
+        stakerContract = await Staker.deploy(exampleExternalContract.address, THRESHOLD, STAKING_INTERVAL);
       });
     }
 
@@ -107,7 +109,7 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
           exampleExternalContract = await ExampleExternalContract.deploy();
 
           const Staker = await ethers.getContractFactory("Staker");
-          stakerContract = await Staker.deploy(exampleExternalContract.address);
+          stakerContract = await Staker.deploy(exampleExternalContract.address, THRESHOLD, STAKING_INTERVAL);
 
           console.log('\t'," 🔨 Staking...")
           const stakeResult = await stakerContract.connect(secondAccount).stake({value: ethers.utils.parseEther("0.001")});
