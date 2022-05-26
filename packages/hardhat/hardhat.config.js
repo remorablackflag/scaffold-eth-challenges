@@ -54,7 +54,7 @@ module.exports = {
       // (you can put in a mnemonic here to set the deployer locally)
     },
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/ec6a8acd1d354717acec099ad46a0bab", // <---- YOUR INFURA ID! (or it won't work)
+      url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA_KEY}`, // <---- YOUR INFURA ID! (or it won't work)
       //    url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/eth/rinkeby", // <---- YOUR MORALIS ID! (not limited to infura)
       accounts: {
         mnemonic: mnemonic(),
