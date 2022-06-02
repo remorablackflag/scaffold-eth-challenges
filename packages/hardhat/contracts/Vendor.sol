@@ -29,7 +29,7 @@ contract Vendor is Ownable {
     }
 
     // ToDo: create a withdraw() function that lets the owner withdraw ETH
-    function withdraw() public {
+    function withdraw() public pure {
         revert("Function is disabled");
 
         // if ( msg.sender != owner()) { 
