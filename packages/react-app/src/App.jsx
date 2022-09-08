@@ -60,10 +60,11 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const networkName = process.env.REACT_APP_NETWORK || "localhost";
+const targetNetwork = NETWORKS[networkName]; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
-const DEBUG = true;
+const DEBUG = "localhost" === networkName;
 const NETWORKCHECK = true;
 
 // 🛰 providers
@@ -479,7 +480,7 @@ function App(props) {
     );
   };
 
-{/*
+
   const riggedRoll = async () => {
 
     setDiceRolled(true);
@@ -490,7 +491,7 @@ function App(props) {
       update => {
         console.log("TX UPDATE",update)
 
-        if (update?.status === "failed") {
+        if (undefined !== update.error || update?.status === "failed") {
           setDiceRolled(false);
           setDiceRollImage(null);
         }
@@ -516,7 +517,7 @@ function App(props) {
       setDiceRolled(false);
     }
   });
-*/}
+
 
 
   const filter = readContracts.DiceGame?.filters.Roll(address, null);
@@ -584,7 +585,7 @@ function App(props) {
                   <Button type="primary" disabled={diceRolled} onClick={rollTheDice}>
                     Roll the dice!
                   </Button>
-                  {/*
+                  {
                   <div style={{ padding: 16 }}> 
                     <Account
                       address={readContracts?.RiggedRoll?.address}
@@ -601,7 +602,7 @@ function App(props) {
                       Rigged Roll!
                     </Button>
                   </div>
-                */}
+                }
                 </div>
                 {diceRollImg}
               </div>
